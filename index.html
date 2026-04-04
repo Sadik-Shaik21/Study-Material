@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apollo B-Tech Study Material</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <img src="apollo-logo.png" alt="Apollo Logo" class="logo">
+  </nav>
+
+  <main class="container">
+    <div class="glass-card">
+      <header>
+        <h1>The Apollo University</h1>
+        <p class="subtitle">B-Tech Study Material Portal</p>
+      </header>
+
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="#11cdee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input type="text" id="subjectSearch" placeholder="Search subjects (OS, Java, Python...)"
+            onkeyup="filterSubjects()">
+        </div>
+        <div id="searchResults" class="search-results"></div>
+      </div>
+
+      <section class="selection-area">
+        <h2>Select Your Batch</h2>
+        <div class="button-group">
+          <a href="batch_2024.html" class="btn">
+            <span class="year">2024 - 2028</span>
+            <span class="label">Academic Batch</span>
+          </a>
+
+          <a href="batch_2025.html" class="btn">
+            <span class="year">2025 - 2029</span>
+            <span class="label">Academic Batch</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="dashboard admin">
+        <h2>Admin Upload Portal</h2>
+        <form action="upload.php" method="post">
+
+          <div style="text-align: left; margin-bottom: 15px;">
+            <label for="adminPass" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Admin Secret
+              Key:</label>
+            <input type="password" name="adminPass" id="adminPass" placeholder="Enter Password" required
+              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+          </div>
+
+          <div style="text-align: left; margin-bottom: 15px;">
+            <label for="subjectSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select
+              Subject:</label>
+            <select name="subject" id="subjectSelect" required
+              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+              <option value="" disabled selected>Loading subjects...</option>
+            </select>
+          </div>
+
+          <div style="text-align: left; margin-bottom: 15px;">
+            <label for="unitSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select Unit/Category:</label>
+            <select name="unit" id="unitSelect" required
+              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+              <option value="" disabled selected>Select a Unit</option>
+              <option value="Unit 1" style="background:#0f2027;">Unit 1</option>
+              <option value="Unit 2" style="background:#0f2027;">Unit 2</option>
+              <option value="Unit 3" style="background:#0f2027;">Unit 3</option>
+              <option value="Unit 4" style="background:#0f2027;">Unit 4</option>
+              <option value="Unit 5" style="background:#0f2027;">Unit 5</option>
+              <option value="General Material" style="background:#0f2027;">General Material</option>
+            </select>
+          </div>
+
+          <div style="text-align: left; margin-bottom: 15px;">
+            <label for="materialName" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Material
+              Name (e.g. Reference Notes):</label>
+            <input type="text" name="materialName" id="materialName" placeholder="Enter Material Name" required
+              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+          </div>
+
+          <div style="text-align: left; margin-bottom: 20px;">
+            <label for="driveLink" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Google Drive
+              Link:</label>
+            <input type="url" name="driveLink" id="driveLink" placeholder="https://drive.google.com/..." required
+              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+          </div>
+
+          <button type="submit" class="btn"
+            style="opacity: 1; animation: none; background: var(--primary-cyan); color: #0f2027 !important; font-weight: bold;">
+            Submit Link
+          </button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="feedback-footer">
+    <p>
+      Have feedback or need resources? Email us at:
+      <a href="mailto:resource.adm24@gmail.com">resource.adm24@gmail.com</a>
+    </p>
+  </footer>
+
+  <button id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <script src="script.js"></script>
+
+<script src="global.js"></script>
+</body>
+
+</html>
