@@ -73,7 +73,8 @@
           </div>
 
           <div style="text-align: left; margin-bottom: 15px;">
-            <label for="unitSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select Unit/Category:</label>
+            <label for="unitSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select
+              Unit/Category:</label>
             <select name="unit" id="unitSelect" required
               style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
               <option value="" disabled selected>Select a Unit</option>
@@ -120,6 +121,66 @@
   <button id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
   <script src="script.js"></script>
+
+  <script src="global.js"></script>
+</body>
+
+</html>
+<div style="text-align: left; margin-bottom: 15px;">
+  <label for="unitSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select
+    Unit/Category:</label>
+  <select name="unit" id="unitSelect" required
+    style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+    <option value="" disabled selected>Select a Unit</option>
+    <option value="Unit 1" style="background:#0f2027;">Unit 1</option>
+    <option value="Unit 2" style="background:#0f2027;">Unit 2</option>
+    <option value="Unit 3" style="background:#0f2027;">Unit 3</option>
+    <option value="Unit 4" style="background:#0f2027;">Unit 4</option>
+    <option value="Unit 5" style="background:#0f2027;">Unit 5</option>
+    <option value="Experiment 1" style="background:#0f2027;">Experiment 1</option>
+    <option value="Experiment 2" style="background:#0f2027;">Experiment 2</option>
+    <option value="Experiment 3" style="background:#0f2027;">Experiment 3</option>
+    <option value="Experiment 4" style="background:#0f2027;">Experiment 4</option>
+    <option value="Experiment 5" style="background:#0f2027;">Experiment 5</option>
+    <option value="Viva Questions" style="background:#0f2027;">Viva Questions</option>
+    <option value="General Material" style="background:#0f2027;">General Material</option>
+  </select>
+</div>
+
+<div style="text-align: left; margin-bottom: 15px;">
+  <label for="materialName" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Material Name (e.g.
+    Reference Notes):</label>
+  <input type="text" name="materialName" id="materialName" placeholder="Enter Material Name" required
+    style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+</div>
+
+<div style="text-align: left; margin-bottom: 20px;">
+  <label for="driveLink" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Google Drive
+    Link:</label>
+  <input type="url" name="driveLink" id="driveLink" placeholder="https://drive.google.com/..." required
+    style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+</div>
+
+<button type="submit" class="btn"
+  style="opacity: 1; animation: none; background: var(--primary-cyan); color: #0f2027 !important; font-weight: bold;">
+  Submit Link
+</button>
+</form>
+</section>
+
+</div>
+</main>
+
+<footer class="feedback-footer">
+  <p>
+    Have feedback or need resources? Email us at:
+    <a href="mailto:resource.adm24@gmail.com">resource.adm24@gmail.com</a>
+  </p>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+<script src="script.js"></script>
 
 <script src="global.js"></script>
 </body>

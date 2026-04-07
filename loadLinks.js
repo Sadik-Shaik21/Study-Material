@@ -17,10 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const overlay = document.querySelector(".overlay");
             if (!overlay) return; // Only apply on pages with .overlay (subject pages)
             
-            // Find all anchor tags that are likely unit links (e.g. "Unit 1")
+            // Find all anchor tags that act as dropdown toggles (indicated by href="#")
             const unitLinks = Array.from(overlay.querySelectorAll("a")).filter(a => {
-                const text = a.textContent.trim().toLowerCase();
-                return text.startsWith("unit");
+                return a.getAttribute("href") === "#";
             });
 
             // Keep track of the page's drive links
