@@ -10,6 +10,7 @@ const subjectData = [
     { name: "Universal Human Values (UHV)", url: "cse_sem4_uhv.html" },
 
     // --- SEMESTER 3 ---
+    { name: "Java", url: "cse_sem3_java.html" },
     { name: "Java Programming Lab", url: "cse_sem3_java_lab.html" },
     { name: "Object Oriented Programming (OOP)", url: "cse_sem3_oop.html" },
     { name: "Design & Analysis of Algorithms (DAA)", url: "cse_sem3_daa.html" },
@@ -30,7 +31,7 @@ const subjectData = [
 ];
 
 // 2. SEARCH LOGIC
-function filterSubjects() {
+function filterSubjects(event) {
     const input = document.getElementById('subjectSearch').value.toLowerCase();
     const resultsDiv = document.getElementById('searchResults');
     
@@ -58,6 +59,10 @@ function filterSubjects() {
             link.textContent = item.name;
             resultsDiv.appendChild(link);
         });
+
+        if (event && event.key === 'Enter') {
+            window.location.href = filtered[0].url;
+        }
     } else {
         resultsDiv.style.display = "none";
     }

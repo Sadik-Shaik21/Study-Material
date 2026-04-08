@@ -22,91 +22,131 @@
         <p class="subtitle">B-Tech Study Material Portal</p>
       </header>
 
-      <div class="search-container">
-        <div class="search-box">
-          <span class="search-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-              stroke="#11cdee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </span>
-          <input type="text" id="subjectSearch" placeholder="Search subjects (OS, Java, Python...)"
-            onkeyup="filterSubjects()">
-        </div>
-        <div id="searchResults" class="search-results"></div>
+      <!-- New Gateway Selection -->
+      <div id="homeSelection"
+        style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px;">
+        <button onclick="showSection('studentSection')" class="btn"
+          style="opacity: 1; animation: none; width: 100%; max-width: 300px; font-size: 1.2rem; padding: 20px;">🎓
+          Student</button>
+        <button onclick="showSection('adminSection')" class="btn"
+          style="opacity: 1; animation: none; width: 100%; max-width: 300px; font-size: 1.2rem; padding: 20px;">🔐
+          Admin</button>
       </div>
 
-      <section class="selection-area">
-        <h2>Select Your Batch</h2>
-        <div class="button-group">
-          <a href="batch_2024.html" class="btn">
-            <span class="year">2024 - 2028</span>
-            <span class="label">Academic Batch</span>
-          </a>
-
-          <a href="batch_2025.html" class="btn">
-            <span class="year">2025 - 2029</span>
-            <span class="label">Academic Batch</span>
-          </a>
+      <!-- Student Section -->
+      <div id="studentSection" style="display: none;">
+        <div class="search-container">
+          <div class="search-box">
+            <span class="search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="#11cdee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input type="text" id="subjectSearch" placeholder="Search subjects (OS, Java, Python...)"
+              onkeyup="filterSubjects(event)">
+          </div>
+          <div id="searchResults" class="search-results"></div>
         </div>
-      </section>
 
-      <section class="dashboard admin">
-        <h2>Admin Upload Portal</h2>
-        <form action="upload.php" method="post">
+        <section class="selection-area">
+          <h2>Select Your Batch</h2>
+          <div class="button-group">
+            <a href="batch_2024.html" class="btn">
+              <span class="year">2024 - 2028</span>
+              <span class="label">Academic Batch</span>
+            </a>
 
-          <div style="text-align: left; margin-bottom: 15px;">
-            <label for="adminPass" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Admin Secret
-              Key:</label>
-            <input type="password" name="adminPass" id="adminPass" placeholder="Enter Password" required
-              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+            <a href="batch_2025.html" class="btn">
+              <span class="year">2025 - 2029</span>
+              <span class="label">Academic Batch</span>
+            </a>
           </div>
+        </section>
 
-          <div style="text-align: left; margin-bottom: 15px;">
-            <label for="subjectSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select
-              Subject:</label>
-            <select name="subject" id="subjectSelect" required
-              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
-              <option value="" disabled selected>Loading subjects...</option>
-            </select>
-          </div>
+        <br>
+        <button onclick="showSection('homeSelection')"
+          style="background: none; border: none; color: var(--primary-cyan); margin-top: 20px; cursor: pointer; font-size: 1rem; font-weight: bold; width: 100%; text-align: center; text-decoration: underline;">🔙
+          Back to Gateway</button>
+      </div>
 
-          <div style="text-align: left; margin-bottom: 15px;">
-            <label for="unitSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select
-              Unit/Category:</label>
-            <select name="unit" id="unitSelect" required
-              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
-              <option value="" disabled selected>Select a Unit</option>
-              <option value="Unit 1" style="background:#0f2027;">Unit 1</option>
-              <option value="Unit 2" style="background:#0f2027;">Unit 2</option>
-              <option value="Unit 3" style="background:#0f2027;">Unit 3</option>
-              <option value="Unit 4" style="background:#0f2027;">Unit 4</option>
-              <option value="Unit 5" style="background:#0f2027;">Unit 5</option>
-              <option value="General Material" style="background:#0f2027;">General Material</option>
-            </select>
-          </div>
+      <!-- Admin Section -->
+      <div id="adminSection" style="display: none;">
+        <section class="dashboard admin">
+          <h2>Admin Upload Portal</h2>
+          <form action="upload.php" method="post">
 
-          <div style="text-align: left; margin-bottom: 15px;">
-            <label for="materialName" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Material
-              Name (e.g. Reference Notes):</label>
-            <input type="text" name="materialName" id="materialName" placeholder="Enter Material Name" required
-              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
-          </div>
+            <div style="text-align: left; margin-bottom: 15px;">
+              <label for="adminPass" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Admin Secret
+                Key:</label>
+              <input type="password" name="adminPass" id="adminPass" placeholder="Enter Password" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+            </div>
 
-          <div style="text-align: left; margin-bottom: 20px;">
-            <label for="driveLink" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Google Drive
-              Link:</label>
-            <input type="url" name="driveLink" id="driveLink" placeholder="https://drive.google.com/..." required
-              style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
-          </div>
+            <div style="text-align: left; margin-bottom: 15px;">
+              <label for="subjectSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select
+                Subject:</label>
+              <select name="subject" id="subjectSelect" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+                <option value="" disabled selected>Loading subjects...</option>
+              </select>
+            </div>
 
-          <button type="submit" class="btn"
-            style="opacity: 1; animation: none; background: var(--primary-cyan); color: #0f2027 !important; font-weight: bold;">
-            Submit Link
-          </button>
-        </form>
-      </section>
+            <div style="text-align: left; margin-bottom: 15px;">
+              <label for="unitSelect" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select
+                Unit/Category:</label>
+              <select name="unit" id="unitSelect" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+                <option value="" disabled selected>Select a Unit</option>
+                <option value="Unit 1" style="background:#0f2027;">Unit 1</option>
+                <option value="Unit 2" style="background:#0f2027;">Unit 2</option>
+                <option value="Unit 3" style="background:#0f2027;">Unit 3</option>
+                <option value="Unit 4" style="background:#0f2027;">Unit 4</option>
+                <option value="Unit 5" style="background:#0f2027;">Unit 5</option>
+                <option value="General Material" style="background:#0f2027;">General Material</option>
+              </select>
+            </div>
+
+            <div style="text-align: left; margin-bottom: 15px;">
+              <label for="materialName" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Material
+                Name (e.g. Reference Notes):</label>
+              <input type="text" name="materialName" id="materialName" placeholder="Enter Material Name" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+            </div>
+
+            <div style="text-align: left; margin-bottom: 20px;">
+              <label for="driveLink" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Google Drive
+                Link:</label>
+              <input type="url" name="driveLink" id="driveLink" placeholder="https://drive.google.com/..." required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+            </div>
+
+            <button type="submit" class="btn"
+              style="opacity: 1; animation: none; background: var(--primary-cyan); color: #0f2027 !important; font-weight: bold;">
+              Submit Link
+            </button>
+          </form>
+        </section>
+
+        <br>
+        <button onclick="showSection('homeSelection')"
+          style="background: none; border: none; color: var(--primary-cyan); margin-top: 20px; cursor: pointer; font-size: 1rem; font-weight: bold; width: 100%; text-align: center; text-decoration: underline;">🔙
+          Back to Gateway</button>
+      </div>
+
+      <script>
+        function showSection(sectionId) {
+          document.getElementById('homeSelection').style.display = 'none';
+          document.getElementById('studentSection').style.display = 'none';
+          document.getElementById('adminSection').style.display = 'none';
+
+          const target = document.getElementById(sectionId);
+          if (target) {
+            target.style.display = (sectionId === 'homeSelection') ? 'flex' : 'block';
+          }
+        }
+      </script>
 
     </div>
   </main>
