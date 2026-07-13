@@ -34,7 +34,7 @@ const subjectData = [
 function filterSubjects(event) {
     const input = document.getElementById('subjectSearch').value.toLowerCase();
     const resultsDiv = document.getElementById('searchResults');
-    
+
     // Clear previous results
     resultsDiv.innerHTML = "";
 
@@ -45,14 +45,14 @@ function filterSubjects(event) {
     }
 
     // Find matches
-    const filtered = subjectData.filter(item => 
+    const filtered = subjectData.filter(item =>
         item.name.toLowerCase().includes(input)
     );
 
     // Show results
     if (filtered.length > 0) {
         resultsDiv.style.display = "block";
-        
+
         filtered.forEach(item => {
             const link = document.createElement('a');
             link.href = item.url;
@@ -79,6 +79,8 @@ document.addEventListener('click', (e) => {
 // 4. ADMIN PORTAL HELPER: Populate Dropdown automatically
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.getElementById("subjectSelect");
+    const deleteDropdown = document.getElementById("subjectSelectDelete");
+
     if (dropdown) {
         dropdown.innerHTML = '<option value="" disabled selected>Select a Subject</option>';
         subjectData.forEach(subject => {
@@ -89,4 +91,49 @@ document.addEventListener("DOMContentLoaded", () => {
             dropdown.appendChild(option);
         });
     }
+
+    if (deleteDropdown) {
+        deleteDropdown.innerHTML = '<option value="" disabled selected>Select a Subject</option>';
+        subjectData.forEach(subject => {
+            const option = document.createElement("option");
+            option.value = subject.url;
+            option.textContent = subject.name;
+            option.style.background = "#0f2027";
+            deleteDropdown.appendChild(option);
+        });
+    }
 });
+
+// 5. DELETE PORTAL HELPER: Load items to delete
+async function loadLinksForDeletion(subjectUrl) {
+    const materialSelect = document.getElementById('materialSelectDelete');
+    if (!materialSelect) return;
+
+    materialSelect.innerHTML = '<option value="" disabled selected>Loading...</option>';
+
+    try {
+        const response = await fetch('links.json?' + new Date().getTime());
+        if (!response.ok) throw new Error("Failed to fetch");
+        const data = await response.json();
+
+        const subjectLinks = data[subjectUrl] || [];
+
+        if (subjectLinks.length === 0) {
+            materialSelect.innerHTML = '<option value="" disabled selected>No materials found</option>';
+            return;
+        }
+
+        materialSelect.innerHTML = '<option value="" disabled selected>Select Material to Delete</option>';
+        subjectLinks.forEach((item, index) => {
+            const option = document.createElement("option");
+            option.value = index;
+            option.textContent = `[${item.unit}] ${item.name}`;
+            option.style.background = "#0f2027";
+            materialSelect.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error("Error loading links:", error);
+        materialSelect.innerHTML = '<option value="" disabled selected>Error loading links</option>';
+    }
+}

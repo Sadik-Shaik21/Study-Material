@@ -73,7 +73,14 @@
 
       <!-- Admin Section -->
       <div id="adminSection" style="display: none;">
-        <section class="dashboard admin">
+        <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+          <button onclick="showAdminTab('upload')" class="btn" id="uploadTabBtn" style="padding: 10px 20px;">Upload
+            Link</button>
+          <button onclick="showAdminTab('delete')" class="btn" id="deleteTabBtn"
+            style="padding: 10px 20px; background: rgba(255,255,255,0.1);">Delete Link</button>
+        </div>
+
+        <section class="dashboard admin" id="uploadFormSection">
           <h2>Admin Upload Portal</h2>
           <form action="upload.php" method="post">
 
@@ -129,6 +136,43 @@
           </form>
         </section>
 
+        <section class="dashboard admin" id="deleteFormSection" style="display: none;">
+          <h2>Delete Material Link</h2>
+          <form action="delete.php" method="post">
+
+            <div style="text-align: left; margin-bottom: 15px;">
+              <label for="adminPassDelete" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Admin
+                Secret Key:</label>
+              <input type="password" name="adminPass" id="adminPassDelete" placeholder="Enter Password" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+            </div>
+
+            <div style="text-align: left; margin-bottom: 15px;">
+              <label for="subjectSelectDelete"
+                style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select Subject:</label>
+              <select name="subject" id="subjectSelectDelete" required onchange="loadLinksForDeletion(this.value)"
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+                <option value="" disabled selected>Loading subjects...</option>
+              </select>
+            </div>
+
+            <div style="text-align: left; margin-bottom: 20px;">
+              <label for="materialSelectDelete"
+                style="font-size: 0.8rem; color: var(--text-muted); margin-left: 5px;">Select Material to
+                Delete:</label>
+              <select name="materialIndex" id="materialSelectDelete" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; outline: none; margin-top: 5px;">
+                <option value="" disabled selected>Select Subject First</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn"
+              style="opacity: 1; animation: none; background: #ff4d4d; color: white !important; font-weight: bold;">
+              Delete Link
+            </button>
+          </form>
+        </section>
+
         <br>
         <button onclick="showSection('homeSelection')"
           style="background: none; border: none; color: var(--primary-cyan); margin-top: 20px; cursor: pointer; font-size: 1rem; font-weight: bold; width: 100%; text-align: center; text-decoration: underline;">🔙
@@ -136,6 +180,24 @@
       </div>
 
       <script>
+        function showAdminTab(tabName) {
+          if (tabName === 'upload') {
+            document.getElementById('uploadFormSection').style.display = 'block';
+            document.getElementById('deleteFormSection').style.display = 'none';
+            document.getElementById('uploadTabBtn').style.background = 'var(--primary-cyan)';
+            document.getElementById('uploadTabBtn').style.color = '#0f2027';
+            document.getElementById('deleteTabBtn').style.background = 'rgba(255,255,255,0.1)';
+            document.getElementById('deleteTabBtn').style.color = 'white';
+          } else {
+            document.getElementById('uploadFormSection').style.display = 'none';
+            document.getElementById('deleteFormSection').style.display = 'block';
+            document.getElementById('deleteTabBtn').style.background = '#ff4d4d';
+            document.getElementById('deleteTabBtn').style.color = 'white';
+            document.getElementById('uploadTabBtn').style.background = 'rgba(255,255,255,0.1)';
+            document.getElementById('uploadTabBtn').style.color = 'white';
+          }
+        }
+
         function showSection(sectionId) {
           document.getElementById('homeSelection').style.display = 'none';
           document.getElementById('studentSection').style.display = 'none';
